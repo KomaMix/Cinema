@@ -6,9 +6,14 @@ namespace Cinema.Controllers
 {
     public class HomeController : Controller
     {
+        private IFilmRepository repository;
+        public HomeController(IFilmRepository repository)
+        {
+            this.repository = repository;
+        }
         public IActionResult Index()
         {
-            return View();
+            return View(repository.Films);
         }
     }
 }

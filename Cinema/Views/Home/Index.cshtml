@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Film>
+
+@{
     Layout = null;
 }
 
@@ -15,6 +17,12 @@
     <center>
         <img src="Images/cat.jpg" alt="Изображение" style="width: 50%; height: 50%;">
     </center>
+    @foreach (var p in Model)
+    {
+        <div>
+            <h3>@p.Name</h3>
+        </div>
+    }
 
 </body>
 </html>
