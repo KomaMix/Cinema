@@ -21,7 +21,7 @@ options.UseSqlServer(connectionString));
 
 
 var app = builder.Build();
-
+SeedData.FillingMovies(app);
 
 
 app.UseHttpsRedirection();
