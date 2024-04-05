@@ -1,5 +1,6 @@
 using Cinema.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Cinema.Controllers
@@ -13,7 +14,12 @@ namespace Cinema.Controllers
         }
         public IActionResult Index()
         {
-            return View(repository.Films);
+            return View();
+        }
+
+        public IActionResult Films()
+        {
+            return View(repository.Films.Include(f => f.Ratings).ToList());
         }
     }
 }

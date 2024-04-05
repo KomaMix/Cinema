@@ -1,28 +1,14 @@
-﻿@model IEnumerable<Film>
-
-@{
-    Layout = null;
-}
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
-    <title>Приветствие и изображение</title>
-</head>
+    <meta charset="utf-8">
+  </head>
 <body>
-    <h1 style="font-size: 40px; text-align: center">Добро пожаловать на сайт для просмотра фильмов!</h1>
-    <h2> Это написал Тимур ураааааааааа </h2>
+    <h1>Добро пожаловать на главную страницу!</h1>
+    <h2>Правда тут мало что есть</h2>
     <center>
         <img src="Images/cat.jpg" alt="Изображение" style="width: 50%; height: 50%;">
     </center>
-    @foreach (var p in Model)
-    {
-        <div>
-            <h3>@p.Name</h3>
-        </div>
-    }
-
 </body>
 </html>
