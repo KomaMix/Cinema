@@ -1,0 +1,22 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Приветствие и изображение</title>
+</head>
+<body>
+    @foreach (var p in Model)
+    {
+        <div id="film">
+            <h3>Название:@p.Name</h3>
+            <p>Описание: @p.Description</p>
+            @foreach (var r in p.Ratings)
+            {
+                <p>Рейтинг: @r.Rating</p>
+            }
+        </div>
+    }
+
+</body>
+</html>l
