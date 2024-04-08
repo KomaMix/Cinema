@@ -8,7 +8,7 @@
             {
                 var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
 
-                if (context == null || (context.FilmRatings.Any() && context.Films.Any()))
+                if (context == null || (!context.FilmRatings.Any() && !context.Films.Any()))
                 {
                     Film film1 = new Film
                     {
@@ -64,6 +64,26 @@
                     }
                     
                 }
+            }
+        }
+
+        public static void DeleteFilms(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+
+                foreach (var item in context.Films)
+                {
+                    context.Films.Remove(item);
+                }
+
+                foreach (var item in context.FilmRatings)
+                {
+                    context.FilmRatings.Remove(item);
+                }
+
+                context.SaveChanges();
             }
         }
     }
