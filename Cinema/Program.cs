@@ -1,4 +1,5 @@
 using Cinema.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,18 +7,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// ƒобавление репозитори€ базы данных в сервисы приложени€
+
+// ”становка базы данных фильмов в сервисах дл€ приложени€
+builder.Services.AddDbContext<ApplicationContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// ”становка базы данных пользователей в сервисах дл€ приложени€
+builder.Services.AddDbContext<IdentityContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
+
+
+// ƒобавление репозитори€ базы данных фильмов в сервисы приложени€
 builder.Services.AddTransient<IFilmRepository, EFFilmRepository>();
 
-// ѕолучение строки подключени€ к базе данных
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// ѕолучение настроек базы данных
-var options = new DbContextOptionsBuilder<ApplicationContext>().UseSqlServer(connectionString).Options;
-
-// ”становка базы данных в сервисах дл€ приложени€
-builder.Services.AddDbContext<ApplicationContext>(options =>
-options.UseSqlServer(connectionString));
+// ƒобавление базы данных пользователей в сервисы приложени€
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
 
 
 var app = builder.Build();
