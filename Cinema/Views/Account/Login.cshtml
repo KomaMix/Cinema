@@ -1,0 +1,29 @@
+﻿@model Cinema.Models.DTO.LoginModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+<body>
+    <form asp-action="Login" method="post">
+        <label asp-for="Username">Username</label>
+        <input type="text" asp-for="Username" />
+        <span asp-validation-for="Username"></span>
+
+        <label asp-for="Password">Password</label>
+        <input type="text" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+
+        @if (TempData["msg"] != null)
+			{
+        @TempData["msg"]
+			}
+        <input type="submit" value="Login" />
+        <a href="Account/Registration">Если вы не зарегестрированы, то зарегестрируйтесь!</a>
+
+    </form>
+</body>
+</html>
