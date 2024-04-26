@@ -1,4 +1,8 @@
 using Cinema.Models;
+using Cinema.Models.Auth;
+using Cinema.Repositories.Abstract;
+using Cinema.Repositories.Implementation;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,19 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// ƒобавление репозитори€ базы данных в сервисы приложени€
+
+// ”становка базы данных фильмов в сервисах дл€ приложени€
+builder.Services.AddDbContext<ApplicationContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// ”становка базы данных пользователей в сервисах дл€ приложени€
+builder.Services.AddDbContext<UsersDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
+
+
+// ƒобавление репозитори€ базы данных фильмов в сервисы приложени€
 builder.Services.AddTransient<IFilmRepository, EFFilmRepository>();
 
-// ѕолучение строки подключени€ к базе данных
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+// ƒобавление базы данных пользователей в сервисы приложени€
+builder.Services.AddIdentity<AppUser, IdentityRole>()
+    .AddEntityFrameworkStores<UsersDbContext>().AddDefaultTokenProviders();
 
-// ѕолучение настроек базы данных
-var options = new DbContextOptionsBuilder<ApplicationContext>().UseSqlServer(connectionString).Options;
+builder.Services.ConfigureApplicationCookie(op => op.LoginPath = "/Account/Login");
 
-// ”становка базы данных в сервисах дл€ приложени€
-builder.Services.AddDbContext<ApplicationContext>(options =>
-options.UseSqlServer(connectionString));
-
+builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 
 var app = builder.Build();
 SeedData.FillingMovies(app);
@@ -29,10 +40,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

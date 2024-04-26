@@ -1,7 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/styles.css" />
 </head>
@@ -11,6 +10,11 @@
             <ul>
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a asp-controller="Home" asp-action="Films">Фильмы</a></li>
+                @if (User.IsInRole("admin"))
+                {
+                    <li style="background-color: red"><a asp-controller="Admin" asp-action="Display">Пользователи</a></li>
+                }
+                <li><a asp-controller="Account" asp-action="Logout">Выход</a></li>
             </ul>
         </div>
     </div>
