@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Cinema.Models
+namespace Cinema.Models.Auth
 {
     public class AppUser : IdentityUser
     {
-        public int Age { get; set; }
+        public string Name { get; set; }
     }
 }

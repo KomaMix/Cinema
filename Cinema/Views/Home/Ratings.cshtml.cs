@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Cinema.Views.Admin
+namespace Cinema.Views.Home
 {
-    public class CreateModel : PageModel
+    public class RatingsModel : PageModel
     {
         public void OnGet()
         {

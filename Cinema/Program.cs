@@ -1,4 +1,7 @@
 using Cinema.Models;
+using Cinema.Models.Auth;
+using Cinema.Repositories.Abstract;
+using Cinema.Repositories.Implementation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +16,7 @@ builder.Services.AddDbContext<ApplicationContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Установка базы данных пользователей в сервисах для приложения
-builder.Services.AddDbContext<IdentityContext>(options =>
+builder.Services.AddDbContext<UsersDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
 
 
@@ -22,8 +25,11 @@ builder.Services.AddTransient<IFilmRepository, EFFilmRepository>();
 
 // Добавление базы данных пользователей в сервисы приложения
 builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
+    .AddEntityFrameworkStores<UsersDbContext>().AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(op => op.LoginPath = "/Account/Login");
+
+builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 
 var app = builder.Build();
 SeedData.FillingMovies(app);
@@ -34,10 +40,12 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
