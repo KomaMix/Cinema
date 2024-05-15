@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 
 
 // Установка базы данных фильмов в сервисах для приложения
-builder.Services.AddDbContext<ApplicationContext>(options =>
+builder.Services.AddDbContext<FilmDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Установка базы данных пользователей в сервисах для приложения

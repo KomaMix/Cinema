@@ -1,4 +1,4 @@
-﻿namespace Cinema.Models.Repositories
+﻿namespace Cinema.Models
 {
     public class FilmRating
     {

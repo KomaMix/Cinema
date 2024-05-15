@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cinema.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
+    [DbContext(typeof(FilmDbContext))]
     [Migration("20240329132834_InitialCreate")]
     partial class InitialCreate
     {

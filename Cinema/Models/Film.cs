@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Cinema.Models.Repositories;
 
 namespace Cinema.Models
 {

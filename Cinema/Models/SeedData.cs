@@ -1,5 +1,4 @@
 ﻿using Cinema.Models.DbContexts;
-using Cinema.Models.Repositories;
 
 namespace Cinema.Models
 {
@@ -9,7 +8,7 @@ namespace Cinema.Models
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+                var context = serviceScope.ServiceProvider.GetService<FilmDbContext>();
 
                 if (context == null || (!context.FilmRatings.Any() && !context.Films.Any()))
                 {
@@ -74,7 +73,7 @@ namespace Cinema.Models
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
+                var context = serviceScope.ServiceProvider.GetService<FilmDbContext>();
 
                 foreach (var item in context.Films)
                 {
