@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Cinema.Models.Repositories;
+using Microsoft.EntityFrameworkCore;
 
-namespace Cinema.Models
+namespace Cinema.Models.DbContexts
 {
     public class ApplicationContext : DbContext
     {

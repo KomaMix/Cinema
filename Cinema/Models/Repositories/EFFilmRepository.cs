@@ -1,4 +1,6 @@
-﻿namespace Cinema.Models
+﻿using Cinema.Models.DbContexts;
+
+namespace Cinema.Models.Repositories
 {
     public class EFFilmRepository : IFilmRepository
     {

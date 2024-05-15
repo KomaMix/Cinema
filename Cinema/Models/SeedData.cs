@@ -1,4 +1,7 @@
-﻿namespace Cinema.Models
+﻿using Cinema.Models.DbContexts;
+using Cinema.Models.Repositories;
+
+namespace Cinema.Models
 {
     public class SeedData
     {

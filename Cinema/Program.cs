@@ -1,4 +1,5 @@
-using Cinema.Models;
+using Cinema.Models.DbContexts;
+using Cinema.Models.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
