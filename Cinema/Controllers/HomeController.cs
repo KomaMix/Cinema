@@ -17,11 +17,12 @@ namespace Cinema.Controllers
             this.repository = repository;
         }
 
-		[Authorize]
+
 		public IActionResult Index()
         {
             return View();
         }
+
         public IActionResult Films()
         {
             return View(repository.Films.Include(f => f.Ratings).ToList());
