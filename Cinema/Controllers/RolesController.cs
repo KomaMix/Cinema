@@ -11,7 +11,7 @@ namespace Cinema.Controllers
 
         public RolesController(RoleManager<IdentityRole> roleManager)
         {
-            _roleManager = roleManager;
+            _roleManager = roleManager; 
         }
 
         public IActionResult Index()
