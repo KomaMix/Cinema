@@ -22,7 +22,10 @@ builder.Services.AddDbContext<UsersDbContext>(options =>
 
 
 // Добавление репозитория базы данных фильмов в сервисы приложения
-builder.Services.AddTransient<IFilmRepository, EFFilmRepository>();
+builder.Services.AddScoped<IFilmRepository, EFFilmRepository>();
+
+// Добавление репозитория базы данных пользователей в сервисы приложения
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Добавление базы данных пользователей в сервисы приложения
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()

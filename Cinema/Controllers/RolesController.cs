@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cinema.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -14,7 +14,7 @@ namespace Cinema.Controllers
             _roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Roles()
         {
             var roles = _roleManager.Roles;
             return View(roles);
@@ -30,7 +30,7 @@ namespace Cinema.Controllers
                 var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Roles");
                 }
                 foreach (var error in result.Errors)
                 {
