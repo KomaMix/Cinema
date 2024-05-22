@@ -51,7 +51,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 //builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 
 var app = builder.Build();
-//SeedData.FillingMovies(app);
+SeedData.DeleteFilms(app);
+SeedData.FillingMovies(app);
 
 
 app.UseHttpsRedirection();
