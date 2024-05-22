@@ -10,11 +10,8 @@
             <ul>
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a asp-controller="Home" asp-action="Films">Фильмы</a></li>
-                @if (User.IsInRole("admin"))
-                {
-                    <li style="background-color: red"><a asp-controller="Admin" asp-action="Display">Пользователи</a></li>
-                }
-                <li><a asp-controller="Account" asp-action="Logout">Выход</a></li>
+                <li><a asp-controller="Account" asp-action="Register">Register</a></li>
+                <li><a asp-controller="Account" asp-action="Login">Login</a></li>
             </ul>
         </div>
     </div>

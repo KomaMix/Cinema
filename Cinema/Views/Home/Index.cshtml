@@ -1,14 +1,45 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <title>Главное вкладка</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .centered {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <h1>Добро пожаловать на главную страницу!</h1>
     <h2>Правда тут мало что есть</h2>
-    <center>
-        <img src="Images/cat.jpg" alt="Изображение" style="width: 50%; height: 50%;">
-    </center>
+    <div class="centered">
+        <img src="~/Images/cat.png" alt="Изображение" style="max-width: 50%; height: auto;">
+    </div>
 </body>
 </html>

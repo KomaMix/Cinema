@@ -1,23 +1,79 @@
 ﻿@model IEnumerable<Film>
 
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <title>Приветствие и изображение</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список фильмов</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+
+        .film-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .film-image {
+            height: 300px; /* Фиксированная высота изображения */
+            width: 100%; /* Ширина изображения будет равной ширине контейнера */
+            overflow: hidden; /* Обрезка содержимого, выходящего за рамки элемента */
+            border: 1px solid #ccc; /* Легкий контур вокруг изображения */
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center; /* Горизонтальное центрирование изображения */
+            align-items: center; /* Вертикальное центрирование изображения */
+            border-radius: 4px; /* Скругление углов изображения */
+        }
+
+            .film-image img {
+                max-height: 100%; /* Максимальная высота изображения */
+                max-width: 100%; /* Максимальная ширина изображения */
+                display: block; /* Отображение в виде блока для центрирования */
+            }
+
+        .film-rating {
+            padding-left: 15px;
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    @foreach (var p in Model)
-    {
-        <div id="film">
-            <h3>Название:@p.Name</h3>
-            <p>Описание: @p.Description</p>
-            @foreach (var r in p.Ratings)
-            {
-                <p>Рейтинг: @r.Rating</p>
-            }
-        </div>
-    }
-
+    <div class="container">
+        <h1 class="text-center">Список Фильмов</h1>
+        @foreach (var film in Model)
+        {
+            <div class="film-card">
+                @if (!string.IsNullOrWhiteSpace(film.Url))
+                {
+                    <div class="film-image">
+                        <!-- Изображение в стиле "cover" для поддержания пропорций -->
+                        <img src="@film.Url" alt="Изображение фильма" style="object-fit: cover;">
+                    </div>
+                }
+                <h3 class="card-title">Название: <span>@film.Name</span></h3>
+                <p class="card-text"><strong>Описание:</strong> @film.Description</p>
+                <div class="film-ratings">
+                    @{
+                        var averageRating = film.Ratings.Any() ? film.Ratings.Average(r => r.Rating).ToString("0.0") : "Н/Д";
+                        var ratingsCount = film.Ratings.Count;
+                    }
+                    <span class="film-rating">Рейтинг: @averageRating/10 (@ratingsCount проголосовавших)</span>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- Подключение Bootstrap JS и Popper.js для работы определенных компонентов -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
