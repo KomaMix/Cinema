@@ -1,0 +1,37 @@
+﻿/* Для Views/Home/Films.cshtml */
+body {
+    padding-top: 20px;
+}
+
+.film-card {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.film-image {
+    height: 300px; /* Фиксированная высота изображения */
+    width: 100%; /* Ширина изображения будет равной ширине контейнера */
+    overflow: hidden; /* Обрезка содержимого, выходящего за рамки элемента */
+    border: 1px solid #ccc; /* Легкий контур вокруг изображения */
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center; /* Горизонтальное центрирование изображения */
+    align-items: center; /* Вертикальное центрирование изображения */
+    border-radius: 4px; /* Скругление углов изображения */
+}
+
+    .film-image img {
+        max-height: 100%; /* Максимальная высота изображения */
+        max-width: 100%; /* Максимальная ширина изображения */
+        display: block; /* Отображение в виде блока для центрирования */
+    }
+
+.film-rating {
+    padding-left: 15px;
+    font-style: italic;
+    font-size: 0.9em;
+    color: #555;
+}
